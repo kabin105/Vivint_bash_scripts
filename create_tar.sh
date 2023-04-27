@@ -3,7 +3,7 @@ source params.sh # Include the parameters
 
 path=$(pwd) # file path in your local computer where TestLogs directory will be created
 
-## YOU MAY WANT TO CHANGE THESE VARIABLES ##
+######## YOU MAY WANT TO CHANGE THESE VARIABLES #########
 file_name="HDRAM" # If each file name will be like: HDRAM1.tar.gz, HDRAM2.tar.gz, etc.
 log_folder_name="Tars" # All the files will be saved in the folder with this name
 
@@ -30,11 +30,11 @@ for ((j = 1; j <= "${#IP_last_digits[@]}"; j++)); do
     rm -r TestLog
     mkdir TestLog
     scp /mnt/sdcard0/* /mnt/sdcard0/TestLog
-    rm HDRAM$j.tar.gz
-    tar cvzf HDRAM$j.tar.gz /mnt/sdcard0/TestLog
+    rm HDRAM${CAMERA_LABEL[i-1]}.tar.gz
+    tar cvzf HDRAM${CAMERA_LABEL[i-1]}.tar.gz /mnt/sdcard0/TestLog
   "
   
-  scp root@$IP:/mnt/sdcard0/HDRAM$j.tar.gz $path_log_folder
+  scp root@$IP:/mnt/sdcard0/HDRAM${CAMERA_LABEL[i-1]}.tar.gz $path_log_folder
   
   echo "" # New line to separate info from next camera's info
 done
